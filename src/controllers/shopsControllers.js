@@ -19,8 +19,8 @@ let getShops = async (req, res, next) => {
   }
 
   res.status(200).json({
-    page: Number(page),
-    hints: Number(limit),
+    // page: Number(page),
+    // hints: Number(limit),
     result,
     totalHints,
   });
