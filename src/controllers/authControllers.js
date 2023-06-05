@@ -33,10 +33,11 @@ let logout = async (req, res) => {
 logout = asyncWrapper(logout);
 
 let getCurrent = async (req, res) => {
-  const { name, email } = req.user;
+  const { name, email, _id } = req.user;
   res.json({
     name,
     email,
+    _id,
   });
 };
 
