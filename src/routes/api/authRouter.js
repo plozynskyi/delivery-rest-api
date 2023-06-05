@@ -20,7 +20,7 @@ const router = Router();
 
 router.post('/signup', validateBody(createUserValidationSchema), signup);
 router.post('/login', validateBody(loginValidationSchema), login);
-router.post('/logout', logout);
+router.post('/logout', authMiddleware, logout);
 router.get('/current', authMiddleware, getCurrent);
 
 module.exports = { authRouter: router };

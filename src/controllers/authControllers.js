@@ -22,6 +22,7 @@ let login = async (req, res) => {
 login = asyncWrapper(login);
 
 let logout = async (req, res) => {
+  console.log(req.user);
   const { _id } = req.user;
   await User.findByIdAndUpdate(_id, { token: '' });
 
