@@ -1,27 +1,20 @@
 const Joi = require('joi');
 
-const registerSchema = Joi.object({
-  email: Joi.string()
-    .email({
-      minDomainSegments: 2,
-      tlds: { allow: ['com', 'net', 'ua'] },
-    })
-    .required(),
-  name: Joi.string().required(),
-  password: Joi.string().min(6).required(),
+const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,30}$/;
+
+const createUserValidationSchema = Joi.object({
+  name: Joi.string(),
+  email: Joi.string().email().required(),
+  password: Joi.string().pattern(passwordPattern).required().messages({
+    'string.pattern.base':
+      'Password should contain minimum eight characters, at least one letter and one number.',
+  }),
 });
 
-const loginSchema = Joi.object({
-  email: Joi.string().required(),
-  password: Joi.string().min(6).required(),
+const loginValidationSchema = Joi.object().keys({
+  name: createUserValidationSchema.extract('name'),
+  email: createUserValidationSchema.extract('email'),
+  password: createUserValidationSchema.extract('password'),
 });
 
-const emailSchema = Joi.object({
-  email: Joi.string().required(),
-});
-
-module.exports = {
-  registerSchema,
-  loginSchema,
-  emailSchema,
-};
+module.exports = { createUserValidationSchema, loginValidationSchema };

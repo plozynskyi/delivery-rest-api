@@ -3,9 +3,7 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 
-const { shopsRouter } = require('./routes/api/shopsRouter');
-const { productsRouter } = require('./routes/api/productsRouter');
-const { orderRouter } = require('./routes/api/orderRouter');
+const router = require('./routes/api/index');
 
 const { errorHandler } = require('./middleware/middleware');
 
@@ -18,9 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-app.use('/api/shops', shopsRouter);
-app.use('/api/products', productsRouter);
-app.use('/api/order', orderRouter);
+app.use('/api', router);
 
 app.use(errorHandler);
 
