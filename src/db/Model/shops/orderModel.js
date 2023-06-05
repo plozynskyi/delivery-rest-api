@@ -24,6 +24,10 @@ const orderSchema = new Schema(
       type: String,
     },
 
+    id: {
+      type: String,
+    },
+
     address: {
       type: String,
     },
