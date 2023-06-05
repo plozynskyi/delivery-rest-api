@@ -1,4 +1,5 @@
 const { asyncWrapper } = require('../helpers/apiHelper');
+const { User } = require('../db/Model/auth/User');
 
 const { signupService, loginService } = require('../services/authServices');
 
@@ -18,7 +19,14 @@ let login = async (req, res) => {
 
 login = asyncWrapper(login);
 
-let logout = async (req, res) => {};
+let logout = async (req, res) => {
+  const { _id } = req.user;
+  await User.findByIdAndUpdate(_id, { token: '' });
+
+  res.json({
+    message: 'Logout success',
+  });
+};
 
 logout = asyncWrapper(logout);
 
