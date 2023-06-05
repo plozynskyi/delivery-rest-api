@@ -14,7 +14,9 @@ signup = asyncWrapper(signup);
 let login = async (req, res) => {
   const { user, token } = await loginService(req.body);
 
-  res.status(200).json({ name: user.name, email: user.email, token: token });
+  res
+    .status(200)
+    .json({ name: user.name, email: user.email, _id: user._id, token: token });
 };
 
 login = asyncWrapper(login);
