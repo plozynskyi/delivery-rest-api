@@ -15,6 +15,22 @@ let addOrder = async (req, res, next) => {
 
 addOrder = asyncWrapper(addOrder);
 
+let getOrderDetail = async (req, res, next) => {
+  const { orderId } = req.params;
+
+  const result = await Order.findById(orderId);
+
+  const totalHints = await Order.count();
+
+  res.status(200).json({
+    result,
+    totalHints,
+  });
+};
+
+getOrderDetail = asyncWrapper(getOrderDetail);
+
 module.exports = {
   addOrder,
+  getOrderDetail,
 };

@@ -31,6 +31,11 @@ const orderSchema = new Schema(
     address: {
       type: String,
     },
+
+    totalPrice: {
+      type: String,
+    },
+
     busket: {
       type: Array,
     },

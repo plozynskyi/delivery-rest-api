@@ -10,11 +10,13 @@ const authMiddleware = async (req, res, next) => {
   const { authorization = '' } = req.headers;
   const [bearer, token] = authorization.split(' ');
 
-  if (bearer !== 'Bearer') {
-    return next(new AuthError(401, 'Not authorized, please, provide a token'));
-  }
-
   try {
+    if (bearer !== 'Bearer') {
+      return next(
+        new AuthError(401, 'Not authorized, please, provide a token')
+      );
+    }
+
     const { _id } = jwt.verify(token, ACCESS_TOKEN_SECRET);
 
     const user = await User.findById(_id);
