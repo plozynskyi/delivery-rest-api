@@ -20,11 +20,11 @@ let getOrderDetail = async (req, res, next) => {
 
   const result = await Order.findById(orderId);
 
-  const totalHints = await Order.count();
+  // const totalHints = await Order.count();
 
   res.status(200).json({
     result,
-    totalHints,
+    // totalHints,
   });
 };
 

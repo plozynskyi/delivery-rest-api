@@ -18,7 +18,7 @@ let getProductsByIdShop = async (req, res, next) => {
     }
   );
 
-  const totalHints = await Products.count();
+  // const totalHints = await Products.count();
 
   if (!result) {
     throw new HttpError(404, `Shop with id - ${shopId} not found`);
@@ -28,7 +28,7 @@ let getProductsByIdShop = async (req, res, next) => {
     // page: Number(page),
     // hints: Number(limit),
     result,
-    totalHints,
+    // totalHints,
   });
 };
 

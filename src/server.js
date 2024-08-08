@@ -4,7 +4,7 @@ const app = require('./app');
 const { connectMongo } = require('./db/connection');
 
 dotenv.config();
-const { PORT } = process.env || 3030;
+const { PORT } = process.env || 3032;
 
 const start = async () => {
   try {
